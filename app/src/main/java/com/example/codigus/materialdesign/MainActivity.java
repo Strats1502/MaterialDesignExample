@@ -13,20 +13,29 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
-    private int[] colores;
-    private String[] nombres;
-    private ArrayList<Tarjeta> tarjetas;
-    private RecyclerView recyclerView;
-    private Adapter adapter;
-    private FloatingActionButton floatingActionButton;
+import butterknife.BindArray;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
+public class MainActivity extends AppCompatActivity {
+    //Views
+    @BindView(R.id.recyclerview_tarjetas) RecyclerView recyclerView;
+    @BindView(R.id.floatingactionbutton_añadir) FloatingActionButton floatingActionButton;
+
+    //Arrays
+    @BindArray(R.array.colores) int[] colores;
+    @BindArray(R.array.nombres) String[] nombres;
+
+    //RecyclerView components
+    private ArrayList<Tarjeta> tarjetas;
+    private Adapter adapter;
+
+    //Static String variables
     public static final String EXTRA_UPDATE = "extra_update";
     public static final String EXTRA_DELETE = "extra_delete";
     public static final String EXTRA_NAME = "extra_name";
     public static final String EXTRA_INITIAL = "extra_initial";
     public static final String EXTRA_COLOR = "extra_color";
-
     public static final String TRANSITION_FAB = "fab_transition";
     public static final String TRANSITION_INITIAL = "initial_transition";
     public static final String TRANSITION_NAME = "name_transition";
@@ -36,24 +45,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
-        colores = getResources().getIntArray(R.array.colores);
-        nombres = getResources().getStringArray(R.array.nombres);
         tarjetas = new ArrayList<>();
 
         generarTarjetas();
 
         adapter = new Adapter(this, tarjetas);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview_tarjetas);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingactionbutton_añadir);
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Pair<View, String> pair = Pair.create(view.findViewById(R.id.floatingactionbutton_añadir), "fab_transition");
+                Pair<View, String> pair = Pair.create(view.findViewById(R.id.floatingactionbutton_añadir), TRANSITION_FAB);
                 ActivityOptionsCompat options;
                 Activity activity = MainActivity.this;
                 options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, pair);

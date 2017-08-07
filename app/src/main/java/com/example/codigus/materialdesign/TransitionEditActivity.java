@@ -13,26 +13,25 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by codigus on 07/08/2017.
  */
 
 public class TransitionEditActivity extends AppCompatActivity {
-    private TextView textViewLetraInicial;
-    private Button botonActualizar;
-    private Button botonEliminar;
-    private EditText editTextNombre;
+    @BindView(R.id.textview_letra_inicial) TextView textViewLetraInicial;
+    @BindView(R.id.boton_actualizar) Button botonActualizar;
+    @BindView(R.id.boton_borrar) Button botonEliminar;
+    @BindView(R.id.edittext_nombre) EditText editTextNombre;
     private Intent intent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transition_edit);
-
-        textViewLetraInicial = (TextView) findViewById(R.id.textview_letra_inicial);
-        botonActualizar = (Button) findViewById(R.id.boton_actualizar);
-        botonEliminar = (Button) findViewById(R.id.boton_borrar);
-        editTextNombre = (EditText) findViewById(R.id.edittext_nombre);
+        ButterKnife.bind(this);
 
         intent = getIntent();
 
