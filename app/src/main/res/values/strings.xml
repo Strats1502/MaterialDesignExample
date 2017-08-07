@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">MaterialDesign</string>
+    <string name="button_borrar">Borrar</string>
+
+    <string-array name="nombres">
+        <item>Juan José</item>
+        <item>Carlos</item>
+        <item>Alejandro</item>
+        <item>Damian</item>
+        <item>Pedro</item>
+        <item>Paco</item>
+    </string-array>
+
+</resources>
